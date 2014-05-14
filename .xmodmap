@@ -1,0 +1,9 @@
+! Turn Home into Control
+remove Control = Control_L
+keycode 110 = Control_L
+add Control = Control_L
+
+! Swap escape and Tilde
+keysym asciitilde = Escape
+keysym Escape = grave asciitilde
+
