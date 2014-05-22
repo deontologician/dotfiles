@@ -49,6 +49,12 @@
 ;;; Highlight lines
 (global-hl-line-mode 1)
 
+;;; Recent file mode
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
 ;; To customize the highlight color
 (set-face-background 'hl-line "#171717")
 

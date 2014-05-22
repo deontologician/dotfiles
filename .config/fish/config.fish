@@ -33,7 +33,7 @@ function workon
 end
 
 function cp
-    cp --reflink $argv
+    /usr/bin/cp --reflink $argv
 end
 
 function greprs
