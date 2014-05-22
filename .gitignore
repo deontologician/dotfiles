@@ -1,6 +1,9 @@
 # Non-dotfiles
 /[^.]*
 
+#Dotfiles that change a lot
+*_history
+
 # Emacs cruft
 .#*
 #*
