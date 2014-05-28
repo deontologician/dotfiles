@@ -17,6 +17,8 @@ pulseaudio --start
 pasystray &
 # Battery monitor applet
 batti &
+# Dropbox
+dropboxd &
 # Emacs server (connect to this with `emacsclient`)
 emacs --daemon
 # Start the window manager
