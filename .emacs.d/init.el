@@ -42,6 +42,13 @@
 ;;; Set mouse avoidance, to prevent obscuring the cursor
 (mouse-avoidance-mode 'jump)
 
+;;; Projectile mode (language agnostic project functionality)
+(require 'projectile)
+(projectile-global-mode)
+
+;;; Perspective  (group buffers by workspace)
+;;(require 'persp-projectile)
+
 ;;; Multiple cursors mode
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
