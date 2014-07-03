@@ -16,7 +16,7 @@ pulseaudio --start
 # Pulse audio system tray applet
 pasystray &
 # Battery monitor applet
-batti &
+cbatticon &
 # Dropbox
 dropboxd &
 # Emacs server (connect to this with `emacsclient`)

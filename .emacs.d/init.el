@@ -82,7 +82,7 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
-(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-13"))
+(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-10"))
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
@@ -179,9 +179,9 @@
 ;;;;; END HTML
 
 ;;;;; RUST
-(require 'rust-mode)
-(require 'flymake-rust)
-(add-hook 'rust-mode-hook 'rust-coffee-load)
+;; (require 'rust-mode)
+;; (require 'flymake-rust)
+;; (add-hook 'rust-mode-hook 'rust-coffee-load)
 ;;;;; END RUST
 
 ;;;;;;; END LANGUAGE SECTION ;;;;

@@ -38,7 +38,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/josh/.config/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -46,7 +46,7 @@ terminal = "roxterm"
 browser = "chromium"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = "emacsclient -nc"
-wallpaper_cmd = "/home/deontologician/scripts/wallpaper.sh"
+wallpaper_cmd = "feh -z --bg-fill /home/deontologician/Wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -446,6 +446,6 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
