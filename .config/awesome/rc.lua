@@ -36,6 +36,10 @@ do
 end
 -- }}}
 
+-- Start compton
+awful.util.spawn_with_shell(
+   "compton --config /home/deontologician/.config/compton/conf -b")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")

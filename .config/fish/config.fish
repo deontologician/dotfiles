@@ -33,10 +33,6 @@ function workon
     source ~/.virtualenvs/$argv[1]/bin/activate.fish
 end
 
-function cp
-    /usr/bin/cp --reflink $argv
-end
-
 function greprs
     grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
 end
