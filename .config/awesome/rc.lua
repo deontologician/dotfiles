@@ -36,9 +36,13 @@ do
 end
 -- }}}
 
+-- Start compton
+awful.util.spawn_with_shell(
+   "compton --config /home/josh/.config/compton/conf -b")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/josh/.config/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -46,7 +50,7 @@ terminal = "roxterm"
 browser = "chromium"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = "emacsclient -nc"
-wallpaper_cmd = "/home/deontologician/scripts/wallpaper.sh"
+wallpaper_cmd = "feh -z --bg-fill /home/josh/Wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
