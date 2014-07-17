@@ -82,7 +82,7 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
-(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-10"))
+(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-9"))
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
@@ -168,9 +168,9 @@
 (require 'flymake)
 
 ;;;;; PYTHON
-(elpy-enable)
-(elpy-use-ipython)
-(elpy-clean-modeline)
+;; (elpy-enable)
+;; (elpy-use-ipython)
+;; (elpy-clean-modeline)
 ;;;;; END PYTHON
 
 ;;;;; HTML
