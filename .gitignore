@@ -54,6 +54,23 @@
 /.ssr/
 /.virtualenvs/
 /.wicd/
+/.pypirc
+/.IdeaIC13/
+/.ccache/
+/.dropbox-master/
+/.dropbox-work/
+/.erlang.cookie
+/.gem/
+/.java/
+/.m2/
+/.netbeans/
+/.node-gyp/
+/.npm/
+/.pylint.d/
+/.recentf
+/.rvm/
+/.zlogin
+
 
 # But allow these explicitly
 

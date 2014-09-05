@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vain = require("vain")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -39,7 +40,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 
 -- This is used later as the default terminal and editor to run.
@@ -56,6 +57,12 @@ wallpaper_cmd = "feh -z --bg-fill /home/deontologician/Wallpapers"
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
+-- Set terminal for vain
+vain.widgets.terminal = terminal
+
+-- Get rid of dumb gaps
+size_hints_honor = false
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
@@ -71,6 +78,11 @@ local layouts =
     awful.layout.suit.max.fullscreen,
 --    awful.layout.suit.magnifier,
 --    awful.layout.suit.floating
+    vain.layout.termfair,
+    vain.layout.browse,
+    vain.layout.cascade,
+    vain.layout.cascadebrowse,
+    vain.layout.centerwork,
 }
 -- }}}
 

@@ -16,7 +16,7 @@ set -gx PATH $PATH ~/scripts ~/.cabal/bin ~/.rvm/bin
 set -gx WORKON_HOME ~/.virtualenvs
 set -gx PROJECT_HOME ~/Code
 set -gx JAVA_HOME /usr/lib/jvm/java-default-runtime
-
+set -gx TERM xterm-256color
  
 function fish_prompt
         set last_status $status
@@ -41,3 +41,8 @@ end
 function grepy
     grep -Rn --exclude-dir='\.git' --include='*.py' $argv
 end
+
+function macs
+    emacsclient -nw $argv
+end
+
