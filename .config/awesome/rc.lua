@@ -45,10 +45,10 @@ beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
-browser = "chromium"
+browser = "firefox"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = "emacsclient -nc"
-wallpaper_cmd = "feh -z --bg-fill /home/deontologician/Wallpapers"
+wallpaper_cmd = "feh -z --bg-fill /home/josh/Wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -108,7 +108,7 @@ end
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "chromium", browser },
+   { "firefox", browser },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
@@ -276,10 +276,9 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey, "Shift"   }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey, "Shift"   }, "g", function () awful.util.spawn(browser) end),
+    awful.key({ modkey, "Shift"   }, "f", function () awful.util.spawn(browser) end),
     awful.key({ modkey,           }, "r", function () awful.util.spawn(wallpaper_cmd) end),
     awful.key({ modkey, "Shift"   }, "m", function () awful.util.spawn("emacsclient -nc") end),
-    awful.key({ modkey, "Shift"   }, "l", function () awful.util.spawn("/home/jkuhn/scripts/lockscreen") end),
     awful.key({ modkey,           }, "b", function () mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -295,8 +294,6 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    -- Prompt
-    awful.key({ modkey },            "p",     function () mypromptbox[mouse.screen]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -304,7 +301,11 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+    -- Prompt
+    awful.key({ modkey, "Shift" },   "p", function () mypromptbox[mouse.screen]:run() end),
+    -- Menubar
+    awful.key({ modkey },            "p", function() menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(

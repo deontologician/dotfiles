@@ -11,7 +11,7 @@ syndaemon -t -k -i 2 & ## disabled because it's annoying, palm detection is pret
 # Wicd is the network tray tool
 wicd-client -t &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
-redshift-gtk -l 27:-82 &
+redshift -l 37.3875:-122.0661 &
 # Battery monitor
 batti &
 # Dropbox

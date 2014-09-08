@@ -15,7 +15,7 @@ set __fish_git_prompt_char_upstream_behind '↓'
 set -gx PATH $PATH ~/scripts ~/.cabal/bin ~/.rvm/bin
 set -gx WORKON_HOME ~/.virtualenvs
 set -gx PROJECT_HOME ~/Code
-set -gx JAVA_HOME /usr/lib/jvm/java-default-runtime
+set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx TERM xterm-256color
  
 function fish_prompt
