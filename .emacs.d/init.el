@@ -82,7 +82,7 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
-(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-13"))
+(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-9"))
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
@@ -168,9 +168,9 @@
 (require 'flymake)
 
 ;;;;; PYTHON
-(elpy-enable)
-(elpy-use-ipython)
-(elpy-clean-modeline)
+;; (elpy-enable)
+;; (elpy-use-ipython)
+;; (elpy-clean-modeline)
 ;;;;; END PYTHON
 
 ;;;;; HTML
@@ -179,10 +179,32 @@
 ;;;;; END HTML
 
 ;;;;; RUST
-(require 'rust-mode)
-(require 'flymake-rust)
-(add-hook 'rust-mode-hook 'rust-coffee-load)
+;; (require 'rust-mode)
+;; (require 'flymake-rust)
+;; (add-hook 'rust-mode-hook 'rust-coffee-load)
 ;;;;; END RUST
+
+;;;;; JAVA
+;; This allows indenting like:
+;; private static longFunctionName(
+;;     Arg arg,
+;;     Arg arg)
+(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                  global-semanticdb-minor-mode
+                                  global-semantic-idle-summary-mode
+                                  global-semantic-mru-bookmark-mode))
+(semantic-mode 1)
+(require 'malabar-mode)
+(setq malabar-groovy-lib-dir "/path/to/malabar/lib")
+(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+
+(defun my-indent-setup ()
+  (setq-default c-basic-offset 4)
+  (c-set-offset 'arglist-intro 8)
+  (c-set-offset 'statement-block-intro 4))
+(add-hook 'java-mode-hook 'my-indent-setup)
+
+;;;;; END JAVA
 
 ;;;;;;; END LANGUAGE SECTION ;;;;
 (smex-initialize)

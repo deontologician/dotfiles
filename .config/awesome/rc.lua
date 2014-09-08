@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local vain = require("vain")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -36,21 +37,18 @@ do
 end
 -- }}}
 
--- Start compton
-awful.util.spawn_with_shell(
-   "compton --config /home/josh/.config/compton/conf -b")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+beautiful.init("~/.config/awesome/themes/zenburn/theme.lua")
 
 
 -- This is used later as the default terminal and editor to run.
-terminal = "roxterm"
+terminal = "xfce4-terminal"
 browser = "chromium"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = "emacsclient -nc"
-wallpaper_cmd = "feh -z --bg-fill /home/josh/Wallpapers"
+wallpaper_cmd = "feh -z --bg-fill /home/deontologician/Wallpapers"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -58,6 +56,12 @@ wallpaper_cmd = "feh -z --bg-fill /home/josh/Wallpapers"
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+
+-- Set terminal for vain
+vain.widgets.terminal = terminal
+
+-- Get rid of dumb gaps
+size_hints_honor = false
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
@@ -74,6 +78,11 @@ local layouts =
     awful.layout.suit.max.fullscreen,
 --    awful.layout.suit.magnifier,
 --    awful.layout.suit.floating
+    vain.layout.termfair,
+    vain.layout.browse,
+    vain.layout.cascade,
+    vain.layout.cascadebrowse,
+    vain.layout.centerwork,
 }
 -- }}}
 
@@ -450,6 +459,6 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+--client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+--client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
