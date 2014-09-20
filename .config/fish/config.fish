@@ -12,9 +12,12 @@ set __fish_git_prompt_char_upstream_ahead '↑'
 set __fish_git_prompt_char_upstream_behind '↓'
 
 # PATH
-set -gx PATH $PATH ~/scripts ~/.cabal/bin
-set -gx WORKON_HOME ~/.virtualenvs
-set -gx PROJECT_HOME ~/Code
+if status --is-login
+    set -gx PATH $PATH ~/scripts ~/.cabal/bin ~/.rbenv/bin
+    set -gx WORKON_HOME ~/.virtualenvs
+    set -gx PROJECT_HOME ~/Code
+end
+set -gx TERM xterm-256color
  
 function fish_prompt
         set last_status $status
@@ -32,10 +35,6 @@ function workon
     source ~/.virtualenvs/$argv[1]/bin/activate.fish
 end
 
-function cp
-    /usr/bin/cp --reflink $argv
-end
-
 function greprs
     grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
 end
@@ -43,3 +42,10 @@ end
 function grepy
     grep -Rn --exclude-dir='\.git' --include='*.py' $argv
 end
+
+function macs
+    emacsclient -nw $argv
+end
+
+set -gx PATH $PATH ~/.rbenv/bin
+status --is-interactive; and . (rbenv init -|psub)

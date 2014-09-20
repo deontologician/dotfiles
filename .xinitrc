@@ -6,7 +6,8 @@ synclient HorizTwoFingerScroll=1
 # -K Ignore modifer keys when monitoring keyboard activity
 # -i How many seconds to wait before re-enabling the mouse
 # -d Start as a daemon
-syndaemon -K -i 2 -d &
+# -t just disable buttons, not movement
+syndaemon -K -i 2 -t -d &
 # Wicd is the network tray tool
 wicd-client -t &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
@@ -15,11 +16,15 @@ redshift-gtk -l 27:-82 &
 pulseaudio --start
 # Pulse audio system tray applet
 pasystray &
+# Start the bluetooth app
+blueman-applet &
 # Battery monitor applet
 batti &
 # Dropbox
 dropboxd &
+# auto disk mount
+udiskie --tray &
 # Emacs server (connect to this with `emacsclient`)
-emacs --daemon
+emacs --daemon &
 # Start the window manager
 exec awesome

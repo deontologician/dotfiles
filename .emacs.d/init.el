@@ -46,8 +46,8 @@
 (require 'projectile)
 (projectile-global-mode)
 
-;;; Perspective  (group buffers by workspace)
-;;(require 'persp-projectile)
+(require 'hungry-delete)
+(global-hungry-delete-mode)
 
 ;;; Multiple cursors mode
 (require 'multiple-cursors)
@@ -183,6 +183,10 @@
 (require 'flymake-rust)
 (add-hook 'rust-mode-hook 'rust-coffee-load)
 ;;;;; END RUST
+
+;;;;; HASKELL
+(haskell-indentation-mode)
+;;;;; END HASKELL
 
 ;;;;;;; END LANGUAGE SECTION ;;;;
 (smex-initialize)
