@@ -96,11 +96,14 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
-end
+tags = {
+   [1] = awful.tag({"catalyst", "enyo", "taranis", "phobos", "myrmidon", "eos", "hyperion", "nyx", "erebus"}, 1, layouts[1]),
+   [2] = awful.tag({"tristan", "ishkur", "brutix", "astarte", "hyperion", "sin", "kronos", "moros", "thanatos"}, 2, layouts[1]),
+}
+-- for s = 1, screen.count() do
+--     -- Each screen has its own tag table.
+--     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+-- end
 -- }}}
 
 -- {{{ Menu
@@ -247,6 +250,9 @@ globalkeys = awful.util.table.join(
               function () awful.util.spawn("mpc next") end),
     awful.key({                   }, "XF86AudioPrev",
               function () awful.util.spawn("mpc prev") end),
+    awful.key({                   }, "XF86Tools",
+       function () awful.util.spawn(
+             "i3lock --image=/home/josh/Wallpapers/small_city.png --tiling") end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
     awful.key({ modkey,           }, "j",
         function ()
@@ -291,6 +297,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey,           }, "F2",
+       function ()
+          awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
+             mypromptbox[mouse.screen].widget,
+             function (s)
+                awful.tag.selected().name = s
+          end)
+    end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 

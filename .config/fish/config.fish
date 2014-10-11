@@ -12,11 +12,15 @@ set __fish_git_prompt_char_upstream_ahead '↑'
 set __fish_git_prompt_char_upstream_behind '↓'
 
 # PATH
-set -gx PATH $PATH ~/scripts ~/.cabal/bin ~/.rvm/bin
-set -gx WORKON_HOME ~/.virtualenvs
-set -gx PROJECT_HOME ~/Code
-set -gx JAVA_HOME /usr/lib/jvm/default
+if status --is-login
+        set -gx PATH $PATH ~/scripts ~/.cabal/bin
+        set -gx WORKON_HOME ~/.virtualenvs
+        set -gx PROJECT_HOME ~/Code
+        set -gx JAVA_HOME /usr/lib/jvm/default
+end
+
 set -gx TERM xterm-256color
+
  
 function fish_prompt
         set last_status $status
@@ -31,18 +35,41 @@ function fish_prompt
 end
 
 function workon
-    source ~/.virtualenvs/$argv[1]/bin/activate.fish
+        source ~/.virtualenvs/$argv[1]/bin/activate.fish
 end
 
 function greprs
-    grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
+        grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
 end
 
 function grepy
-    grep -Rn --exclude-dir='\.git' --include='*.py' $argv
+        grep -Rn --exclude-dir='\.git' --include='*.py' $argv
 end
 
 function macs
-    emacsclient -nw $argv
+        emacsclient -nw $argv
 end
 
+set -gx PATH $PATH ~/.rbenv/bin
+
+setenv RBENV_SHELL fish
+. '/home/josh/.rbenv/libexec/../completions/rbenv.fish'
+rbenv rehash 2>/dev/null
+
+function rbenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    eval (rbenv "sh-$command" $argv)
+  case '*'
+    command rbenv "$command" $argv
+  end
+end
+
+function makec
+  git clean -xddf;
+  and ./configure python=python2 --allow-fetch --ccache;
+  and make DEBUG=1 -j20
+end

@@ -1,3 +1,5 @@
+start-pulseaudio-x11
+
 # Remap keys
 setxkbmap -option ctrl:nocaps
 xmodmap ~/.xmodmap
@@ -7,7 +9,8 @@ synclient HorizTwoFingerScroll=1
 # -t don't ignore movement, just taps
 # -i How many seconds to wait before re-enabling the taps
 # -d Start as a daemon
-syndaemon -t -k -i 2 & ## disabled because it's annoying, palm detection is pretty ok
+# -K don't consider mod keys as keyboard usage
+syndaemon -t -K -i 2 &
 # Wicd is the network tray tool
 wicd-client -t &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
@@ -18,6 +21,8 @@ batti &
 dropboxd &
 # Emacs server (connect to this with `emacsclient`)
 emacs --daemon
+# Auto disk mounting
+udiskie --tray &
 # Compton compositor
 compton --config $HOME/.config/compton/conf --paint-on-overlay -b &
 # Start the window manager
