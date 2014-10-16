@@ -12,7 +12,7 @@ theme.wallpaper = "~/Wallpapers/japanese_city_night.jpg"
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "axis 10"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"

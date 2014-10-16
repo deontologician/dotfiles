@@ -59,6 +59,8 @@
 /.ccache/
 /.dropbox-master/
 /.dropbox-work/
+/.dropbox-dist/
+/.rbenv
 /.erlang.cookie
 /.gem/
 /.java/

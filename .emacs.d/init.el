@@ -42,6 +42,9 @@
 ;;; Set mouse avoidance, to prevent obscuring the cursor
 (mouse-avoidance-mode 'jump)
 
+;;; Only use bash with tramp
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+
 ;;; Projectile mode (language agnostic project functionality)
 (require 'projectile)
 (projectile-global-mode)
@@ -168,9 +171,7 @@
 (require 'flymake)
 
 ;;;;; PYTHON
-;; (elpy-enable)
-;; (elpy-use-ipython)
-;; (elpy-clean-modeline)
+(elpy-enable)
 ;;;;; END PYTHON
 
 ;;;;; HTML
@@ -183,28 +184,6 @@
 ;; (require 'flymake-rust)
 ;; (add-hook 'rust-mode-hook 'rust-coffee-load)
 ;;;;; END RUST
-
-;;;;; JAVA
-;; This allows indenting like:
-;; private static longFunctionName(
-;;     Arg arg,
-;;     Arg arg)
-(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-                                  global-semanticdb-minor-mode
-                                  global-semantic-idle-summary-mode
-                                  global-semantic-mru-bookmark-mode))
-(semantic-mode 1)
-(require 'malabar-mode)
-(setq malabar-groovy-lib-dir "/path/to/malabar/lib")
-(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
-
-(defun my-indent-setup ()
-  (setq-default c-basic-offset 4)
-  (c-set-offset 'arglist-intro 8)
-  (c-set-offset 'statement-block-intro 4))
-(add-hook 'java-mode-hook 'my-indent-setup)
-
-;;;;; END JAVA
 
 ;;;;;;; END LANGUAGE SECTION ;;;;
 (smex-initialize)
