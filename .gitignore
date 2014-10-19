@@ -3,6 +3,7 @@
 
 #Dotfiles that change a lot
 *_history
+*.log
 
 # Emacs cruft
 .#*
@@ -17,7 +18,6 @@
 /.bash_logout
 /.bash_profile
 /.bashrc
-/.bzr.log
 /.cabal/
 /.cache/
 /.ccache/
