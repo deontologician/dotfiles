@@ -10,7 +10,7 @@
 (color-theme-wombat)
 
 ;; Add ~/.emacs.d for custom modules
-(add-to-list 'load-path "~/.emacs.d")
+;; (add-to-list 'load-path "~/.emacs.d") ;; emacs 24.4 complains about this
 
 ;;saves place in the file when re-opening it
 (require 'saveplace)
@@ -44,6 +44,7 @@
 
 ;;; Only use bash with tramp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
+(eval-after-load 'tramp '(setenv "LANG" "C"))
 
 ;;; Projectile mode (language agnostic project functionality)
 (require 'projectile)
@@ -86,6 +87,7 @@
 
 ;; set default font
 (add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-9"))
+;;(set-face-attribute 'default t :font "Inconsolata-dz-9" )
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
@@ -105,8 +107,8 @@
 (global-git-gutter-mode t)
 
 (scroll-bar-mode -1)
-(setq menu-bar-mode nil)
-(setq tool-bar-mode nil)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (setq inhibit-startup-message t)
 
 ;; nice completion for M-x
@@ -169,6 +171,10 @@
 
 ;;; LANGUAGE SECTION ;;;;
 (require 'flymake)
+
+;;;;; COFFEESCRIPT
+(custom-set-variables '(coffee-tab-width 4))
+;;;;; END COFFEESCRIPT
 
 ;;;;; PYTHON
 (elpy-enable)

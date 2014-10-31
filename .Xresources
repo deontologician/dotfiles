@@ -5,3 +5,5 @@ Xft.hintstyle: hintslight
 
 Xcursor.theme: Adwaita
 Xcursor.size: 32
+
+Emacs.font: Inconsolata-dz-9
