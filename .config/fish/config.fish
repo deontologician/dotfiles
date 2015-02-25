@@ -13,7 +13,7 @@ set __fish_git_prompt_char_upstream_behind '↓'
 
 # PATH
 if status --is-login
-        set -gx PATH $PATH ~/scripts ~/.cabal/bin
+        set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin
         set -gx WORKON_HOME ~/.virtualenvs
         set -gx PROJECT_HOME ~/Code
         set -gx JAVA_HOME /usr/lib/jvm/default
@@ -50,7 +50,7 @@ function macs
         emacsclient -nw $argv
 end
 
-set -gx PATH $PATH ~/.rbenv/bin
+set -gx PATH $PATH ~/.rbenv/bin ~/.local/bin
 
 setenv RBENV_SHELL fish
 . '/home/josh/.rbenv/libexec/../completions/rbenv.fish'

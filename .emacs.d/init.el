@@ -1,9 +1,14 @@
-;; Setup package archives
+r;; Setup package archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("elpy" . "http://jorgenschaefer.github.io/packages/")))
+                         ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("elpy" . "https://jorgenschaefer.github.io/packages/")))
 (package-initialize)
+
+(add-to-list 'load-path "~/.emacs.d/elm-mode")
+(require 'elm-mode)
+(setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
+(setq exec-path (append exec-path '("~/.cabal/bin")))
 
 ;; Color theme (set this first so colors dont flicker while init.el is loading)
 (require 'color-theme-wombat)
@@ -50,6 +55,10 @@
 (require 'projectile)
 (projectile-global-mode)
 
+;;; Erc desktop notifications
+(add-to-list 'erc-modules 'notifications)
+(erc-notify-mode)
+
 ;;; Perspective  (group buffers by workspace)
 ;;(require 'persp-projectile)
 
@@ -81,6 +90,20 @@
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
+;;; Ace-window mode
+;; Remap the awful other window behavior
+(define-key global-map (kbd "C-x o") 'ace-window)
+;; Set keys to home row, vs. numbers
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+;;; Change scratch buffer to org-mode
+(setq initial-major-mode 'org-mode)
+(setq initial-scratch-message "\
+# This buffer is for notes you don't want to save. You can use
+# org-mode markup (and all Org's goodness) to organise the notes.
+# If you want to create a file, visit that file with C-x C-f,
+# then enter the text in that file's own buffer.
+")
 
 ;; You can select the key you prefer to
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
@@ -116,6 +139,9 @@
 
 ;; nice completion for C-x C-f
 (ido-mode t)
+
+;; cleanup whitespace on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;; KEY BINDINGS
 ;; General purpose completion (from buffers)
@@ -166,7 +192,6 @@
 
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
-
 ;;; END CUSTOMIZED BEHAVIOR ;;;;
 
 ;;; LANGUAGE SECTION ;;;;
@@ -184,6 +209,10 @@
 ;; autostart zencoding mode in html mode
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 ;;;;; END HTML
+
+;;;; HANDLEBARS
+(add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
+;;;; END HANDLEBARS
 
 ;;;;; RUST
 ;; (require 'rust-mode)
