@@ -1,8 +1,9 @@
-r;; Setup package archives
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;; Setup package archives
+(setq package-archives '(;;("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
                          ("melpa" . "http://melpa.org/packages/")
-                         ("elpy" . "https://jorgenschaefer.github.io/packages/")))
+                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
+))
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/elm-mode")
@@ -10,7 +11,7 @@ r;; Setup package archives
 (setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
 (setq exec-path (append exec-path '("~/.cabal/bin")))
 
-;; Color theme (set this first so colors dont flicker while init.el is loading)
+;; ;; Color theme (set this first so colors dont flicker while init.el is loading)
 (require 'color-theme-wombat)
 (color-theme-wombat)
 
@@ -55,9 +56,13 @@ r;; Setup package archives
 (require 'projectile)
 (projectile-global-mode)
 
+;;; SVG mode line
+(add-to-list 'load-path "~/.emacs.d/plugins")
+(require 'ocodo-svg-mode-line)
+
 ;;; Erc desktop notifications
-(add-to-list 'erc-modules 'notifications)
-(erc-notify-mode)
+;(add-to-list 'erc-modules 'notifications)
+;(erc-notify-mode)
 
 ;;; Perspective  (group buffers by workspace)
 ;;(require 'persp-projectile)
@@ -109,8 +114,10 @@ r;; Setup package archives
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
-(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-9"))
-;;(set-face-attribute 'default t :font "Inconsolata-dz-9" )
+;;(set-default-font "Inconsolata-dz")
+;;(add-to-list 'default-frame-alist '(font .  "Inconsolata-g-9"))
+;; Don't uncomment this line, it causes emacs --daemon to fail
+;;(set-face-attribute 'default t :font "Inconsolata-dz-9")
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
@@ -198,7 +205,19 @@ r;; Setup package archives
 (require 'flymake)
 
 ;;;;; COFFEESCRIPT
-(custom-set-variables '(coffee-tab-width 4))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 4)
+ '(column-number-mode t)
+ '(custom-safe-themes
+   (quote
+    ("d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" default)))
+ '(display-battery-mode t)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 ;;;;; END COFFEESCRIPT
 
 ;;;;; PYTHON
@@ -214,6 +233,10 @@ r;; Setup package archives
 (add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
 ;;;; END HANDLEBARS
 
+;;;; JavaScript
+(add-hook 'javascript-mode-hook '(setq js-indent-level 2))
+;;;; end javascript
+
 ;;;;; RUST
 ;; (require 'rust-mode)
 ;; (require 'flymake-rust)
@@ -222,3 +245,9 @@ r;; Setup package archives
 
 ;;;;;;; END LANGUAGE SECTION ;;;;
 (smex-initialize)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Fira Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal)))))

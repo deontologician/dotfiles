@@ -21,7 +21,7 @@ end
 
 set -gx TERM xterm-256color
 
- 
+
 function fish_prompt
         set last_status $status
         if set -q VIRTUAL_ENV
@@ -32,10 +32,6 @@ function fish_prompt
         set_color normal
         printf '%s ' (__fish_git_prompt)
        set_color normal
-end
-
-function workon
-        source ~/.virtualenvs/$argv[1]/bin/activate.fish
 end
 
 function greprs
@@ -50,26 +46,4 @@ function macs
         emacsclient -nw $argv
 end
 
-set -gx PATH $PATH ~/.rbenv/bin ~/.local/bin
-
-setenv RBENV_SHELL fish
-. '/home/josh/.rbenv/libexec/../completions/rbenv.fish'
-rbenv rehash 2>/dev/null
-
-function rbenv
-  set command $argv[1]
-  set -e argv[1]
-
-  switch "$command"
-  case rehash shell
-    eval (rbenv "sh-$command" $argv)
-  case '*'
-    command rbenv "$command" $argv
-  end
-end
-
-function makec
-  git clean -xddf;
-  and ./configure python=python2 --allow-fetch --ccache;
-  and make DEBUG=1 -j20
-end
+#. (rbenv init -|psub)

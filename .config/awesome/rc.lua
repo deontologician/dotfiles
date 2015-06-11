@@ -97,9 +97,23 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-   [1] = awful.tag({"catalyst", "enyo", "taranis", "phobos", "myrmidon", "eos", "hyperion", "nyx", "erebus"}, 1, layouts[1]),
-   [2] = awful.tag({"tristan", "ishkur", "brutix", "astarte", "hyperion", "sin", "kronos", "moros", "thanatos"}, 2, layouts[1]),
+   names = {
+      {
+         "batman",
+         "taste",
+         "africa",
+         "thursday",
+         "alcatraz",
+         "gas cap",
+         "fortran",
+         "mozart",
+         "flail",
+      }
+   }
 }
+for s = 1, screen.count() do
+   tags[s] = awful.tag(tags.names[1], s, layouts[1])
+end
 -- for s = 1, screen.count() do
 --     -- Each screen has its own tag table.
 --     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
