@@ -1,5 +1,5 @@
 ;; Setup package archives
-(setq package-archives '(;;("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
                          ("melpa" . "http://melpa.org/packages/")
                          ;("elpy" . "https://jorgenschaefer.github.io/packages/")
@@ -66,6 +66,11 @@
 
 ;;; Perspective  (group buffers by workspace)
 ;;(require 'persp-projectile)
+
+;; flycheck
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 
 ;;; Multiple cursors mode
 (require 'multiple-cursors)
@@ -205,19 +210,8 @@
 (require 'flymake)
 
 ;;;;; COFFEESCRIPT
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(coffee-tab-width 4)
- '(column-number-mode t)
- '(custom-safe-themes
-   (quote
-    ("d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" default)))
- '(display-battery-mode t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
+(require 'flymake-coffee)
+(add-hook 'coffee-mode-hook 'flymake-coffee-load)
 ;;;;; END COFFEESCRIPT
 
 ;;;;; PYTHON
@@ -234,7 +228,15 @@
 ;;;; END HANDLEBARS
 
 ;;;; JavaScript
-(add-hook 'javascript-mode-hook '(setq js-indent-level 2))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'javascript-mode-hook '(setq js-indent-level 4))
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled-checkers
+                      '(javascript-jshint)))
+
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
+(flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;;; end javascript
 
 ;;;;; RUST
@@ -251,3 +253,21 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Fira Mono" :foundry "unknown" :slant normal :weight normal :height 90 :width normal)))))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 4)
+ '(column-number-mode t)
+ '(custom-safe-themes
+   (quote
+    ("d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" default)))
+ '(display-battery-mode t)
+ '(js2-basic-offset 2)
+ '(js2-missing-semi-one-line-override t)
+ '(js2-strict-missing-semi-warning nil)
+ '(js2-strict-trailing-comma-warning nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))

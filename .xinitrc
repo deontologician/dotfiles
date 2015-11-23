@@ -17,8 +17,8 @@ synclient PalmMinWidth=4
 # -d Start as a daemon
 # -K don't consider mod keys as keyboard usage
 syndaemon -t -K -i 2 &
-# Wicd is the network tray tool
-wicd-client -t &
+# network tray tool
+connman-ui-gtk &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
 redshift -l 37.3875:-122.0661 &
 # Battery monitor
