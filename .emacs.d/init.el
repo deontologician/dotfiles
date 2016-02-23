@@ -1,16 +1,15 @@
 ;; Setup package archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("elpy" . "http://jorgenschaefer.github.io/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")
+                         ;("marmalade" . "http://marmalade-repo.org/packages/")
+                         ;("elpy" . "http://jorgenschaefer.github.io/packages/")
+                         ))
+(add-to-list 'load-path "~/.emacs.d/manually_included/")
 (package-initialize)
 
 ;; Color theme (set this first so colors dont flicker while init.el is loading)
 (require 'color-theme-wombat)
 (color-theme-wombat)
-
-;; Add ~/.emacs.d for custom modules
-(add-to-list 'load-path "~/.emacs.d")
 
 ;;saves place in the file when re-opening it
 (require 'saveplace)
@@ -82,13 +81,26 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
-(add-to-list 'default-frame-alist '(font .  "Inconsolata-dz-13"))
+;;(add-to-list 'default-frame-alist '(font .  "Fira-Sans-mono-13"))
 
 ;;; Do line by line scrolling
 (setq scroll-step 1)
 
+;;; Whitespace cleanup before saving
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 ;;;use spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+
+;;; Ace window mode
+(require 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+
+;;; Turn electric indent mode off because it's infuriating
+(electric-indent-mode -1)
+
 
 ;;; highlight parens
 (setq show-paren-delay 0
@@ -114,7 +126,7 @@
 
 ;;; KEY BINDINGS
 ;; General purpose completion (from buffers)
-(global-set-key (kbd "M-/") 'hippie-expand)
+;;(global-set-key (kbd "M-/") 'hippie-expand)
 ;; binds linum mode to C-x l
 (global-set-key "\C-xl" (quote linum-mode))
 ;; binds goto line to C-x g
@@ -162,15 +174,18 @@
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
 
-;;; END CUSTOMIZED BEHAVIOR ;;;;
+;;; END CUSTOMIZED BEHAVIOR ;;;
 
 ;;; LANGUAGE SECTION ;;;;
-(require 'flymake)
+
+;;;;; Cap'n Proto ;;;;;
+(require 'capnp-mode)
+(add-to-list 'auto-mode-alist '("\\.capnp\\'" . capnp-mode))
 
 ;;;;; PYTHON
 (elpy-enable)
 (elpy-use-ipython)
-(elpy-clean-modeline)
+;;(elpy-clean-modeline)
 ;;;;; END PYTHON
 
 ;;;;; HTML
@@ -180,13 +195,49 @@
 
 ;;;;; RUST
 (require 'rust-mode)
-(require 'flymake-rust)
-(add-hook 'rust-mode-hook 'rust-coffee-load)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+; racer is installed in ~/scripts, source is in ~/build
+(setq racer-rust-src-path "/home/josh/Documents/rustc-1.3.0/src")
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
 ;;;;; END RUST
+
+;;;;; ELM
+(require 'elm-mode)
+;;;;; END ELM
 
 ;;;;; HASKELL
 (haskell-indentation-mode)
 ;;;;; END HASKELL
 
+;;;;; JAVASCRIPT
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;;;;; END JAVASCRIPT
+
 ;;;;;;; END LANGUAGE SECTION ;;;;
 (smex-initialize)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(display-battery-mode t)
+ '(js2-basic-offset 2)
+ '(js2-language-version 200)
+ '(js2-missing-semi-one-line-override t)
+ '(js2-strict-missing-semi-warning nil)
+ '(js2-strict-trailing-comma-warning nil)
+ '(menu-bar-mode nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Fira Mono" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))

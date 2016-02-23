@@ -16,8 +16,8 @@ synclient PalmMinWidth=4
 # -d Start as a daemon
 # -K don't consider mod keys as keyboard usage
 syndaemon -t -K -i 2 &
-# Wicd is the network tray tool
-wicd-client -t &
+# network applet
+connman-ui-gtk &
 # Start the bluetooth app
 blueman-applet &
 # Redshift modifies the color temperature of the screen by time of day (Flux)

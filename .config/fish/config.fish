@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
@@ -13,12 +14,13 @@ set __fish_git_prompt_char_upstream_behind '↓'
 
 # PATH
 if status --is-login
-    set -gx PATH $PATH ~/scripts ~/.cabal/bin ~/.rbenv/bin
+    set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin ~/.rbenv/bin ~/.npm-packages/bin
     set -gx WORKON_HOME ~/.virtualenvs
     set -gx PROJECT_HOME ~/Code
+    set -gx NPM_PACKAGES ~/.npm-packages
 end
 set -gx TERM xterm-256color
- 
+
 function fish_prompt
         set last_status $status
         if set -q VIRTUAL_ENV

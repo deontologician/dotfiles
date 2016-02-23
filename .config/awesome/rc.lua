@@ -42,13 +42,12 @@ awful.util.spawn_with_shell(
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
-
+beautiful.init("/home/josh/.config/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "roxterm"
-browser = "chromium"
-editor = os.getenv("EDITOR") or "nano"
+browser = "firefox"
+editor = os.getenv("EDITOR") or "nano -w"
 editor_cmd = "emacsclient -nc"
 wallpaper_cmd = "feh -z --bg-fill /home/josh/Wallpapers"
 
@@ -99,9 +98,12 @@ end
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "chromium", browser },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "firefox", browser },
+   { "restart (M+C+r)", awesome.restart },
+   { "...", function() end },
+   { "...", function() end },
+   { "...", function() end },
+   { "quit (M+Q)", awesome.quit },
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
