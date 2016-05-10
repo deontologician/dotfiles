@@ -1,7 +1,7 @@
 ;; Setup package archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
+                         ;("melpa" . "http://melpa.org/packages/")
                          ;("elpy" . "https://jorgenschaefer.github.io/packages/")
 ))
 (package-initialize)
@@ -26,6 +26,15 @@
 (setq-default frame-title-format (list "%65b %f"))
 (setq-default icon-title-format (list "%b"))
 (display-battery-mode)
+
+;;; Language stuff
+;;    (set-language-environment "Japanese")
+;;    (require 'mozc)  ; or (load-file "/path/to/mozc.el")
+;;    (setq default-input-method "japanese-mozc")
+
+;; ==> Having the above settings, just type C-\ which is bound to
+;; ==> `toggle-input-method' by default.
+
 
 ;;; Highlights matching braces/parens/brackets
 (show-paren-mode t)
@@ -140,6 +149,9 @@
 ;; Git gutter mode
 (require 'git-gutter)
 (global-git-gutter-mode t)
+;; Jump to next/previous hunk
+(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
 
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
@@ -228,8 +240,8 @@
 ;;;; END HANDLEBARS
 
 ;;;; JavaScript
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-hook 'javascript-mode-hook '(setq js-indent-level 4))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+(add-hook 'javascript-mode-hook '(setq js-indent-level 2))
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
                       '(javascript-jshint)))
@@ -269,5 +281,6 @@
  '(js2-missing-semi-one-line-override t)
  '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
+ '(purescript-mode-hook (quote (turn-on-purescript-indentation)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))

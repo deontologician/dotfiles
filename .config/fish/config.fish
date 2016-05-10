@@ -1,15 +1,11 @@
-# Fish git prompt
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate 'yes'
-set __fish_git_prompt_showupstream 'yes'
-set __fish_git_prompt_color_branch yellow
+# Path to Oh My Fish install.
+set -gx OMF_PATH "/home/josh/.local/share/omf"
 
-# Status Chars
-set __fish_git_prompt_char_dirtystate '⚡'
-set __fish_git_prompt_char_stagedstate '→'
-set __fish_git_prompt_char_stashstate '↩'
-set __fish_git_prompt_char_upstream_ahead '↑'
-set __fish_git_prompt_char_upstream_behind '↓'
+# Customize Oh My Fish configuration path.
+#set -gx OMF_CONFIG "/home/josh/.config/omf"
+
+# Load oh-my-fish configuration.
+source $OMF_PATH/init.fish
 
 # PATH
 if status --is-login
@@ -20,30 +16,3 @@ if status --is-login
 end
 
 set -gx TERM xterm-256color
-
-
-function fish_prompt
-        set last_status $status
-        if set -q VIRTUAL_ENV
-           printf '(%s)' (basename $VIRTUAL_ENV)
-        end
-        set_color $fish_color_cwd
-        printf '%s' (prompt_pwd)
-        set_color normal
-        printf '%s ' (__fish_git_prompt)
-       set_color normal
-end
-
-function greprs
-        grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
-end
-
-function grepy
-        grep -Rn --exclude-dir='\.git' --include='*.py' $argv
-end
-
-function macs
-        emacsclient -nw $argv
-end
-
-#. (rbenv init -|psub)

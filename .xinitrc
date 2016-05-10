@@ -3,6 +3,7 @@ start-pulseaudio-x11
 # Remap keys
 setxkbmap -option ctrl:nocaps
 xmodmap ~/.xmodmap
+xrdb -merge ~/.Xresources
 # Allow horizontal scrolling with 2 fingers
 synclient HorizTwoFingerScroll=1
 synclient TapButton2=-1
@@ -24,7 +25,7 @@ redshift -l 37.3875:-122.0661 &
 # Battery monitor
 batti &
 # Dropbox
-dropboxd &
+dropbox &
 # Emacs server (connect to this with `emacsclient`)
 emacs --daemon
 # Auto disk mounting

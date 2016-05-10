@@ -1,9 +1,11 @@
-Xft.dpi: 192
+Xft.dpi: 120
 Xft.antialias: true
 Xft.hinting: true
-Xft.hintstyle: hintslight
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.autohint: 0
 
 Xcursor.theme: Adwaita
 Xcursor.size: 32
 
-Emacs.font: Inconsolata-dz-9
+Emacs.font: 
