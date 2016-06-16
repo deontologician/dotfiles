@@ -22,8 +22,10 @@ syndaemon -t -K -i 2 &
 connman-ui-gtk &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
 redshift -l 37.3875:-122.0661 &
+# ibus daemon is for japanese input
+ibus-daemon -drx
 # Battery monitor
-batti &
+batterymon &
 # Dropbox
 dropbox &
 # Emacs server (connect to this with `emacsclient`)

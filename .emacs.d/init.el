@@ -1,7 +1,7 @@
 ;; Setup package archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
-                         ;("melpa" . "http://melpa.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
                          ;("elpy" . "https://jorgenschaefer.github.io/packages/")
 ))
 (package-initialize)
@@ -239,16 +239,44 @@
 (add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
 ;;;; END HANDLEBARS
 
+;;;; Typescript
+
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (tide-setup)
+            (flycheck-mode +1)
+            (setq flycheck-check-syntax-automatically '(save mode-enabled))
+            (eldoc-mode +1)
+            ;; company is an optional dependency. You have to
+            ;; install it separately via package-install
+            (company-mode-on)))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+(setq typescript-indent-level 2)
+
+;; see https://github.com/Microsoft/TypeScript/blob/cc58e2d7eb144f0b2ff89e6a6685fb4deaa24fde/src/server/protocol.d.ts#L421-473 for the full list available options
+
+;;;; End Typescript
+
 ;;;; JavaScript
-(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
-(add-hook 'javascript-mode-hook '(setq js-indent-level 2))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
                       '(javascript-jshint)))
+;;(define-key js2-mode-map (kbd "M-.") nil)
+(setq js2-basic-offset 2)
+(add-hook 'js2-mode-hook
+          (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))
 
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+(setq js2-basic-offset 2)
+(setq js2-missing-semi-one-line-override t)
+(setq js2-strict-missing-semi-warning nil)
+(setq js2-strict-trailing-comma-warning nil)
 ;;;; end javascript
 
 ;;;;; RUST
@@ -277,10 +305,6 @@
    (quote
     ("d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" default)))
  '(display-battery-mode t)
- '(js2-basic-offset 2)
- '(js2-missing-semi-one-line-override t)
- '(js2-strict-missing-semi-warning nil)
- '(js2-strict-trailing-comma-warning nil)
  '(purescript-mode-hook (quote (turn-on-purescript-indentation)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
