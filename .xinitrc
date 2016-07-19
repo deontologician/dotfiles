@@ -6,7 +6,12 @@ xmodmap ~/.xmodmap
 xrdb -merge ~/.Xresources
 # Allow horizontal scrolling with 2 fingers
 synclient HorizTwoFingerScroll=1
-synclient TapButton2=-1
+synclient TapButton1=1
+synclient TapButton2=0
+synclient TapButton3=3
+synclient ClickFinger1=1
+synclient ClickFinger2=0
+synclient ClickFinger3=0
 synclient RightButtonAreaLeft=0
 synclient RightButtonAreaTop=0
 synclient MiddleButtonAreaLeft=3068
