@@ -1,3 +1,6 @@
+# Fix terminal output unicode
+export LC_ALL en_US.UTF-8
+
 start-pulseaudio-x11
 
 # Remap keys
@@ -8,7 +11,9 @@ xrdb -merge ~/.Xresources
 synclient HorizTwoFingerScroll=1
 synclient TapButton1=1
 synclient TapButton2=0
+# tapping with 3 fingers is a right click
 synclient TapButton3=3
+# Clicking is the same as tapping, no other clicks recognized
 synclient ClickFinger1=1
 synclient ClickFinger2=0
 synclient ClickFinger3=0
@@ -37,6 +42,8 @@ dropbox &
 emacs --daemon
 # Auto disk mounting
 udiskie --tray &
+# Rescuetime tracker
+rescuetime &
 # Compton compositor
 compton --config $HOME/.config/compton/conf --paint-on-overlay -b &
 # Start the window manager

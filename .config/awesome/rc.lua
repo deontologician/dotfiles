@@ -266,7 +266,7 @@ globalkeys = awful.util.table.join(
               function () awful.util.spawn("mpc prev") end),
     awful.key({                   }, "XF86Tools",
        function () awful.util.spawn(
-             "i3lock --image=/home/josh/Wallpapers/small_city.png --tiling") end),
+             "i3lock --image=/home/josh/Wallpapers/sailing_ship_storm.jpg --tiling") end),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
     awful.key({ modkey,           }, "j",
         function ()

@@ -1,4 +1,4 @@
-;; Setup package archives
+;;; Setup package archives
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
                          ("melpa" . "https://melpa.org/packages/")
@@ -6,75 +6,78 @@
 ))
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/elm-mode")
-(require 'elm-mode)
 (setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
 (setq exec-path (append exec-path '("~/.cabal/bin")))
 
-;; ;; Color theme (set this first so colors dont flicker while init.el is loading)
-(require 'color-theme-wombat)
-(color-theme-wombat)
+;;; Styling (set this first so colors dont flicker while loading)
 
-;; Add ~/.emacs.d for custom modules
-;; (add-to-list 'load-path "~/.emacs.d") ;; emacs 24.4 complains about this
+;; Color theme
+(add-to-list 'load-path "~/.emacs.d/themes/doom-theme")
+(require 'doom-theme)
+(load-theme 'doom-one t)
 
-;;saves place in the file when re-opening it
-(require 'saveplace)
-(setq-default save-place t)
+;; Transparency (not too much)
+(set-frame-parameter (selected-frame) 'alpha '(96 . 50))
+(add-to-list 'default-frame-alist '(alpha . (96 . 50)))
+
+;;; Emacs built in options
+
+;; Visual stuff
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(setq inhibit-startup-message t)
 
 ;;; Show stuff in title bar
 (setq-default frame-title-format (list "%65b %f"))
 (setq-default icon-title-format (list "%b"))
+
+;; Show the battery percent
 (display-battery-mode)
 
-;;; Language stuff
-;;    (set-language-environment "Japanese")
-;;    (require 'mozc)  ; or (load-file "/path/to/mozc.el")
-;;    (setq default-input-method "japanese-mozc")
-
-;; ==> Having the above settings, just type C-\ which is bound to
-;; ==> `toggle-input-method' by default.
-
-
-;;; Highlights matching braces/parens/brackets
+;; Highlights matching braces/parens/brackets
 (show-paren-mode t)
 
-;;; Show column number
+;; Show column number
 (column-number-mode t)
 
-;;; Allows typing inside a selection to delete the selection
+;; Allows typing inside a selection to delete the selection
 (delete-selection-mode 1)
 
-;;; Scroll a line at a time
+;; Scroll a line at a time
 (setq scroll-step 1)
 
-;;; Set mouse color so it can be seen over black!
+;; Set mouse color so it can be seen over black!
 (set-mouse-color "dark orange")
 
-;;; Set focus follows mouse
+;; Set focus follows mouse
 (setq mouse-autoselect-window t)
 
-;;; Set mouse avoidance, to prevent obscuring the cursor
+;; Set mouse avoidance, to prevent obscuring the cursor
 (mouse-avoidance-mode 'jump)
 
-;;; Only use bash with tramp
+;; Only use bash with tramp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 (eval-after-load 'tramp '(setenv "LANG" "C"))
 
-;;; Projectile mode (language agnostic project functionality)
-(require 'projectile)
-(projectile-global-mode)
+
+
+;;; Project management options
+
+;; saves place in the file when re-opening it
+(require 'saveplace)
+(setq-default save-place t)
+
+;; workgroups for restoring buffer groups
+(require 'workgroups2)
+(workgroups mode 1)
 
 ;;; SVG mode line
 (add-to-list 'load-path "~/.emacs.d/plugins")
-(require 'ocodo-svg-mode-line)
 
 ;;; Erc desktop notifications
 ;(add-to-list 'erc-modules 'notifications)
 ;(erc-notify-mode)
-
-;;; Perspective  (group buffers by workspace)
-;;(require 'persp-projectile)
 
 ;; flycheck
 (require 'flycheck)
@@ -115,6 +118,9 @@
 ;; Set keys to home row, vs. numbers
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 
+;; You can select the key you prefer to
+(global-set-key (kbd "C-'") 'avy-goto-char)
+
 ;;; Change scratch buffer to org-mode
 (setq initial-major-mode 'org-mode)
 (setq initial-scratch-message "\
@@ -123,9 +129,6 @@
 # If you want to create a file, visit that file with C-x C-f,
 # then enter the text in that file's own buffer.
 ")
-
-;; You can select the key you prefer to
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; set default font
 ;;(set-default-font "Inconsolata-dz")
@@ -147,22 +150,37 @@
 (windmove-default-keybindings 'meta)
 
 ;; Git gutter mode
-(require 'git-gutter)
+(require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 ;; Jump to next/previous hunk
 (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
+                                   ;
+;;; swiper stuff
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-load-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(setq inhibit-startup-message t)
+;;; Magit
+(setq magit-completing-read-function 'ivy-completing-read)
 
-;; nice completion for M-x
-(global-set-key (kbd "M-x") 'smex)
+;;;  Avy mode
+(global-set-key (kbd "C-x g") 'avy-goto-line)
 
-;; nice completion for C-x C-f
-(ido-mode t)
+;;
 
 ;; cleanup whitespace on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -173,7 +191,7 @@
 ;; binds linum mode to C-x l
 (global-set-key "\C-xl" (quote linum-mode))
 ;; binds goto line to C-x g
-(global-set-key "\C-xg" (quote goto-line))
+;;(global-set-key "\C-xg" (quote goto-line))
 
 
 ;;;; CUSTOMIZED BEHAVIOR ;;;;
@@ -241,24 +259,32 @@
 
 ;;;; Typescript
 
-(add-hook 'typescript-mode-hook
-          (lambda ()
-            (tide-setup)
-            (flycheck-mode +1)
-            (setq flycheck-check-syntax-automatically '(save mode-enabled))
-            (eldoc-mode +1)
-            ;; company is an optional dependency. You have to
-            ;; install it separately via package-install
-            (company-mode-on)))
-
+(add-to-list 'load-path "~/.emacs.d/tide")
+(require 'tide)
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  (company-mode +1))
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
 (setq typescript-indent-level 2)
+(setq tide-tsserver-executable "/home/josh/Code/horizon/client/node_modules/typescript/bin/tsserver")
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 ;; see https://github.com/Microsoft/TypeScript/blob/cc58e2d7eb144f0b2ff89e6a6685fb4deaa24fde/src/server/protocol.d.ts#L421-473 for the full list available options
 
 ;;;; End Typescript
+
+;;;; Elm
+(add-to-list 'load-path "~/.emacs.d/elm-mode")
+(require 'elm-mode)
+;;;; End Elm
 
 ;;;; JavaScript
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -286,7 +312,6 @@
 ;;;;; END RUST
 
 ;;;;;;; END LANGUAGE SECTION ;;;;
-(smex-initialize)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -305,6 +330,7 @@
    (quote
     ("d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" default)))
  '(display-battery-mode t)
+ '(js2-strict-inconsistent-return-warning nil)
  '(purescript-mode-hook (quote (turn-on-purescript-indentation)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
