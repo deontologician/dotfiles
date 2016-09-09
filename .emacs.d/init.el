@@ -1,14 +1,3 @@
-;;; Setup package archives
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
-))
-(package-initialize)
-
-(setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
-(setq exec-path (append exec-path '("~/.cabal/bin")))
-
 ;;; Styling (set this first so colors dont flicker while loading)
 
 ;; Color theme
@@ -19,6 +8,18 @@
 ;; Transparency (not too much)
 (set-frame-parameter (selected-frame) 'alpha '(96 . 93))
 (add-to-list 'default-frame-alist '(alpha . (96 . 93)))
+
+;;; Setup package archives
+(setq package-archives '(
+			 ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
+))
+(package-initialize)
+
+(setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
+(setq exec-path (append exec-path '("~/.cabal/bin")))
 
 ;;; Emacs built in options
 
