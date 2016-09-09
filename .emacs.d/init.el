@@ -17,8 +17,8 @@
 (load-theme 'doom-one t)
 
 ;; Transparency (not too much)
-(set-frame-parameter (selected-frame) 'alpha '(96 . 50))
-(add-to-list 'default-frame-alist '(alpha . (96 . 50)))
+(set-frame-parameter (selected-frame) 'alpha '(96 . 93))
+(add-to-list 'default-frame-alist '(alpha . (96 . 93)))
 
 ;;; Emacs built in options
 
@@ -59,7 +59,6 @@
 ;; Only use bash with tramp
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 (eval-after-load 'tramp '(setenv "LANG" "C"))
-
 
 
 ;;; Project management options
