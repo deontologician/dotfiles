@@ -19,7 +19,12 @@ if status --is-login
         set -gx JAVA_HOME /usr/lib/jvm/default
 end
 
-set -gx TERM xterm-256color
+if test -n "$EMACS"
+        set -gx TERM eterm-color
+else
+        set -gx TERM xterm-256color
+end
+
 set -gx NPM_PACKAGES ~/.npm-packages
 
 
@@ -47,4 +52,7 @@ function macs
         emacsclient -nw $argv
 end
 
+function fish_title
+  true
+end
 #. (rbenv init -|psub)

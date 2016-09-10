@@ -34,7 +34,7 @@
     show = /usr/share/git/diff-highlight/diff-highlight | less
     diff = /usr/share/git/diff-highlight/diff-highlight | less
 [github]
-        user = deontologician
+	user = deontologician
 [merge]
         conflictstyle = diff3
 [rerere]

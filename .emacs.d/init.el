@@ -1,3 +1,12 @@
+;;; Setup package archives
+(setq package-archives '(
+                         ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
+))
+(package-initialize)
+
 ;;; Styling (set this first so colors dont flicker while loading)
 
 ;; Color theme
@@ -8,15 +17,6 @@
 ;; Transparency (not too much)
 (set-frame-parameter (selected-frame) 'alpha '(96 . 93))
 (add-to-list 'default-frame-alist '(alpha . (96 . 93)))
-
-;;; Setup package archives
-(setq package-archives '(
-			 ("gnu" . "https://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
-))
-(package-initialize)
 
 (setenv "PATH" (concat (getenv "PATH") ":~/.cabal/bin"))
 (setq exec-path (append exec-path '("~/.cabal/bin")))
@@ -70,11 +70,15 @@
 
 ;; workgroups for restoring buffer groups
 (require 'workgroups2)
-(workgroups mode 1)
+(workgroups-mode 1)
 
-;;; SVG mode line
-(add-to-list 'load-path "~/.emacs.d/plugins")
-
+;;; ansi term
+(require 'unicode-fonts)
+(unicode-fonts-setup)
+(add-hook 'term-exec-hook
+          (function
+           (lambda ()
+             (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
 ;;; Erc desktop notifications
 ;(add-to-list 'erc-modules 'notifications)
 ;(erc-notify-mode)
@@ -112,6 +116,7 @@
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
+
 ;;; Ace-window mode
 ;; Remap the awful other window behavior
 (define-key global-map (kbd "C-x o") 'ace-window)
@@ -238,11 +243,6 @@
 
 ;;; LANGUAGE SECTION ;;;;
 (require 'flymake)
-
-;;;;; COFFEESCRIPT
-(require 'flymake-coffee)
-(add-hook 'coffee-mode-hook 'flymake-coffee-load)
-;;;;; END COFFEESCRIPT
 
 ;;;;; PYTHON
 (elpy-enable)
