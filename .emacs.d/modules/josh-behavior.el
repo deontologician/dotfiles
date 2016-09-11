@@ -1,9 +1,6 @@
 ;;; package --- Summary
-
 ;; Modifying how emacs behaves
-
 ;;; Commentary:
-
 ;;; Code:
 
 ;;; Built in customizations
@@ -84,7 +81,7 @@
 (setq djcb-normal-color          "yellow")
 (setq djcb-normal-cursor-type    'bar)
 (defun djcb-set-cursor-according-to-mode ()
-  "change cursor color and type according to some minor modes."
+  "change cursor color and type according to whether it's read/write only."
   (cond
     (buffer-read-only
       (set-cursor-color djcb-read-only-color)

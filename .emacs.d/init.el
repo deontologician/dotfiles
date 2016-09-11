@@ -2,9 +2,7 @@
 (setq package-archives '(
                          ("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade.ferrier.me.uk/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ;("elpy" . "https://jorgenschaefer.github.io/packages/")
-))
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 ;;; Load paths
 ;; My customizations

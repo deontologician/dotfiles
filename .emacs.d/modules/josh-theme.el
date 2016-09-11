@@ -1,10 +1,8 @@
 ;;; package -- Summary
-
+;; Appearance/ aesthetic changes to emacs
 ;;; Commentary:
 
 ;;; Code:
-
-;; Appearance/ aesthetic changes to emacs
 
 ;; main color theme
 (require 'doom-theme)
@@ -55,7 +53,9 @@
              (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
 
 ;; machine-font-size defined in machine-specific.el
-(set-default-font (concat "Fira Mono-" (number-to-string machine-font-size)))
+(setq font-name-size (concat "Fira Mono-" (number-to-string machine-font-size)))
+(set-default-font font-name-size)
+(add-to-list 'default-frame-alist `(font . ,font-name-size))
 
 ;; Git gutter mode, show git changes in the fringe
 (require 'git-gutter-fringe)
