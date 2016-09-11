@@ -1,10 +1,21 @@
+# Fix terminal output unicode
+export LC_ALL en_US.UTF-8
+
 start-pulseaudio-x11
 
 # Remap keys (Esc -> ~, and Home -> Ctrl)
 xmodmap ~/.xmodmap
 # Allow horizontal scrolling with 2 fingers
 synclient HorizTwoFingerScroll=1
-synclient TapButton2=-1
+synclient MiddleButtonAreaLeft=3068
+synclient TapButton1=1
+synclient TapButton2=0
+# tapping with 3 fingers is a right click
+synclient TapButton3=3
+# Clicking is the same as tapping, no other clicks recognized
+synclient ClickFinger1=1
+synclient ClickFinger2=0
+synclient ClickFinger3=0
 synclient RightButtonAreaLeft=0
 synclient RightButtonAreaTop=0
 synclient MiddleButtonAreaLeft=3068
@@ -16,22 +27,24 @@ synclient PalmMinWidth=4
 # -d Start as a daemon
 # -K don't consider mod keys as keyboard usage
 syndaemon -t -K -i 2 &
-# network applet
+# network tray tool
 connman-ui-gtk &
 # Start the bluetooth app
 blueman-applet &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
 redshift -l 37.3875:-122.0661 &
+# ibus daemon is for japanese input
+ibus-daemon -drx
 # Battery monitor
-batti &
+batterymon &
 # Dropbox
 dropboxd &
 # Emacs server (connect to this with `emacsclient`)
 emacs --daemon
 # Auto disk mounting
 udiskie --tray &
-# Japanese input
-ibus-daemon -drx
+# Rescuetime tracker
+rescuetime &
 # Compton compositor
 compton --config $HOME/.config/compton/conf --paint-on-overlay -b &
 # Start the window manager
