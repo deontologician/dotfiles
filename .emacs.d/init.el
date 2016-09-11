@@ -29,6 +29,10 @@
 ;;; Allows typing inside a selection to delete the selection
 (delete-selection-mode 1)
 
+;;; Japanese
+;; technically emacs-mozc is installed, I haven't checked how to
+;; enable it yet
+
 ;;; Scroll a line at a time
 (setq scroll-step 1)
 

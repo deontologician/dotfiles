@@ -30,6 +30,8 @@ dropboxd &
 emacs --daemon
 # Auto disk mounting
 udiskie --tray &
+# Japanese input
+ibus-daemon -drx
 # Compton compositor
 compton --config $HOME/.config/compton/conf --paint-on-overlay -b &
 # Start the window manager
