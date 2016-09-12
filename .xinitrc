@@ -47,5 +47,8 @@ udiskie --tray &
 rescuetime &
 # Compton compositor
 compton --config $HOME/.config/compton/conf --paint-on-overlay -b &
+# Set wallpaper
+feh -z --bg-fill /home/josh/Wallpaper
 # Start the window manager
-exec awesome
+#exec awesome
+exec qtile

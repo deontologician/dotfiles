@@ -11,3 +11,7 @@
 .emacs.d/semanticdb
 .emacs.d/elpa/archives
 .emacs.d/var
+
+# python cruft
+__pycache__
+*.pyc

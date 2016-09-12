@@ -1,0 +1,15 @@
+[push]
+	default = simple
+[user]
+	name = Josh Kuhn
+	email = deontologician@gmail.com
+[core]
+	editor = emacsclient -nw
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab
+[color]
+	ui = true
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[merge]
+	conflictstyle = diff3
