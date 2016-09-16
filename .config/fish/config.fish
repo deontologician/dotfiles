@@ -17,6 +17,7 @@ if status --is-login
         set -gx WORKON_HOME ~/.virtualenvs
         set -gx PROJECT_HOME ~/Code
         set -gx JAVA_HOME /usr/lib/jvm/default
+        set -gx ANDROID_HOME /opt/android-sdk
 end
 
 if test -n "$EMACS"

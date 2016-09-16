@@ -10,3 +10,9 @@
 .emacs.d/bookmarks
 .emacs.d/semanticdb
 .emacs.d/elpa/archives
+.emacs.d/var
+.emacs.d/eshell
+
+# python cruft
+__pycache__
+*.pyc
