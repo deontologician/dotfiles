@@ -31,6 +31,7 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget
 
+
 mod = "mod4"
 
 keys = [
@@ -74,8 +75,6 @@ keys = [
     #     [mod, "shift"], "Return",
     #     lazy.layout.toggle_split()
     # ),
-    Key([mod], "Return", lazy.spawn("xterm")),
-
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "c", lazy.window.kill()),
@@ -87,6 +86,12 @@ keys = [
     Key([mod, "shift"], "Return", lazy.spawn("roxterm")),
     Key([mod], "r", lazy.spawn("feh -z --bg-fill /home/josh/Wallpapers")),
     Key([mod], "t", lazy.window.toggle_floating()),
+    Key([mod], "h", lazy.layout.grow()),
+    Key([mod], "l", lazy.layout.shrink()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
     # Key([mod], ",", lazy.layout.grow()),
     # Key([mod], ".", lazy.layout.shrink()),
@@ -107,8 +112,7 @@ for i in groups:
     )
 
 layouts = [
-    #slayout.xmonad.MonadTall(),
-    layout.Max(),
+    layout.MonadTall(ratio=0.66),
 ]
 
 widget_defaults = dict(
@@ -124,7 +128,8 @@ screens = [
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
-                widget.TextBox("default config", name="default"),
+                widget.Battery(),
+                widget.Pacman(),
                 widget.Systray(),
                 widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
             ],

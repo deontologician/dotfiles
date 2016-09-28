@@ -19,7 +19,12 @@ if status --is-login
     set -gx PROJECT_HOME ~/Code
     set -gx NPM_PACKAGES ~/.npm-packages
 end
-set -gx TERM xterm-256color
+
+if test -n "$EMACS"
+    set -gx TERM eterm-color
+else
+    set -gx TERM xterm-256color
+end
 
 function fish_prompt
         set last_status $status

@@ -21,6 +21,10 @@
   (global-set-key (kbd "C-x g") 'avy-goto-line)
   (global-set-key (kbd "C-'") 'avy-goto-char))
 
+(with-library ace-window
+  ;; Remap the awful other window behavior
+  (define-key global-map (kbd "C-x o") 'ace-window))
+
 ;; Git-gutter, jumping between hunks is nice
 (with-library git-gutter
   (global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
