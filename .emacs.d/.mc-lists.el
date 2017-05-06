@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        counsel-M-x
+        haskell-indentation-common-electric-command
         hungry-delete-backward
         hungry-delete-forward
         org-self-insert-command

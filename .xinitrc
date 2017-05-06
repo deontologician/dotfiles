@@ -32,13 +32,15 @@ connman-ui-gtk &
 # Start the bluetooth app
 blueman-applet &
 # Redshift modifies the color temperature of the screen by time of day (Flux)
-redshift -l 37.3875:-122.0661 &
+# redshift -l 37.3875:-122.0661 &
+# tokyo redshift
+redshift -l 35.6895:-139.6917 &
 # ibus daemon is for japanese input
 ibus-daemon -drx
 # Battery monitor
 batterymon &
 # Dropbox
-dropboxd &
+~/.dropbox-dist/dropboxd &
 # Emacs server (connect to this with `emacsclient`)
 emacs --daemon
 # Auto disk mounting

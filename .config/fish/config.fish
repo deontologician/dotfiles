@@ -14,11 +14,11 @@ set __fish_git_prompt_char_upstream_behind '↓'
 
 # PATH
 if status --is-login
-    set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin ~/.rbenv/bin ~/.npm-packages/bin
     set -gx WORKON_HOME ~/.virtualenvs
     set -gx PROJECT_HOME ~/Code
     set -gx NPM_PACKAGES ~/.npm-packages
 end
+set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin ~/.rbenv/bin ~/.npm-packages/bin ~/.cargo/bin
 
 if test -n "$EMACS"
     set -gx TERM eterm-color
