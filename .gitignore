@@ -12,6 +12,16 @@
 .emacs.d/elpa/archives
 .emacs.d/var
 
+# object files
+*.o
+*.hi
+
 # python cruft
 __pycache__
 *.pyc
+
+
+# Xmonad binaries
+.xmonad/xmonad
+.xmonad/xmonad-x86_64-linux
+.xmonad/xmonad.errors
