@@ -31,7 +31,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (js2-mode tide nginx-mode lua-mode zencoding-mode yaml-mode xterm-color xref-js2 workgroups2 web-mode unicode-fonts typescript-mode twittering-mode toml-mode shackle racer purescript-mode markdown-mode magit-gh-pulls json-mode js2-refactor ivy-hydra hungry-delete haskell-mode groovy-mode git-gutter-fringe gist frame-cmds flycheck-rust fish-mode elpy elm-mode counsel coffee-mode ace-window ace-jump-buffer))))
+    (zoom-frm js2-mode tide nginx-mode lua-mode zencoding-mode yaml-mode xterm-color xref-js2 workgroups2 web-mode unicode-fonts typescript-mode twittering-mode toml-mode shackle racer purescript-mode markdown-mode magit-gh-pulls json-mode js2-refactor ivy-hydra hungry-delete haskell-mode groovy-mode git-gutter-fringe gist frame-cmds flycheck-rust fish-mode elpy elm-mode counsel coffee-mode ace-window ace-jump-buffer))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
