@@ -18,7 +18,7 @@ if status --is-login
     set -gx PROJECT_HOME ~/Code
     set -gx NPM_PACKAGES ~/.npm-packages
 end
-set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin ~/.rbenv/bin ~/.npm-packages/bin ~/.cargo/bin
+set -gx PATH $PATH /usr/local/bin ~/scripts ~/.cabal/bin ~/.npm-packages/bin ~/.cargo/bin
 
 if test -n "$EMACS"
     set -gx TERM eterm-color
@@ -38,21 +38,6 @@ function fish_prompt
        set_color normal
 end
 
-function workon
-    source ~/.virtualenvs/$argv[1]/bin/activate.fish
-end
-
-function greprs
-    grep -Rn --exclude-dir='\.git' --include='*.rs' $argv
-end
-
-function grepy
-    grep -Rn --exclude-dir='\.git' --include='*.py' $argv
-end
-
 function macs
     emacsclient -nw $argv
 end
-
-set -gx PATH $PATH ~/.rbenv/bin
-status --is-interactive; and . (rbenv init -|psub)
