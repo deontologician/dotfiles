@@ -12,8 +12,8 @@
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 ;; will also require company mode
-(add-hook 'racer-mode-hook #'company-mode)
-(setq company-tooltip-align-annotations t)
+;;(add-hook 'racer-mode-hook #'company-mode)
+;;(setq company-tooltip-align-annotations t)
 
 (provide 'lang-rust)
 ;;; lang-rust.el ends here
