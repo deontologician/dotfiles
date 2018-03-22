@@ -3,6 +3,7 @@ import System.Posix.Env (getEnv)
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Config.Mate
+import XMonad.Actions.CycleWS
 import qualified Data.Map as M
 
 main :: IO ()
@@ -20,8 +21,8 @@ joshKeys conf@(XConfig {XMonad.modMask = modMask}) = M.union jKeys mateKeys
   where
       mateKeys = keys mateConfig conf
       jKeys = M.fromList [
-        ((modMask .|. shiftMask, xK_m),
-          (spawn emacsCommand))
-        , ((modMask .|. shiftMask, xK_g),
-           (spawn chromeCommand))
+          ((modMask .|. shiftMask, xK_m),     (spawn emacsCommand))
+        , ((modMask .|. shiftMask, xK_g),     (spawn chromeCommand))
+        , ((modMask,               xK_Left),  prevWS)
+        , ((modMask,               xK_Right), nextWS)
         ]
