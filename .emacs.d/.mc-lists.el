@@ -7,6 +7,7 @@
         haskell-indentation-common-electric-command
         hungry-delete-backward
         hungry-delete-forward
+        kill-region
         org-self-insert-command
         yaml-electric-backspace
         yaml-electric-dash-and-dot
