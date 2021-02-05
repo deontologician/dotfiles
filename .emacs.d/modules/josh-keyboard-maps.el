@@ -31,8 +31,8 @@
   (global-set-key (kbd "C-x n") 'git-gutter:next-hunk))
 
 ;; Swiper for searching
-(with-library swiper
-  (global-set-key "\C-s" 'swiper))
+;;(with-library swiper
+;;  (global-set-key "\C-s" 'swiper))
 
 ;; Ivy for finding files etc
 (with-library ivy

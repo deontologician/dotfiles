@@ -5,8 +5,7 @@
 ;;; Code:
 
 ;; main color theme
-(require 'doom-theme)
-(load-theme 'doom-one t) ; based on Atom dark
+(load-theme 'doom-one t); based on Atom dark
 
 ;;; Built in customizations
 ;; No scrollbar
@@ -54,7 +53,7 @@
 
 ;; machine-font-size defined in machine-specific.el
 (setq font-name-size (concat "Fira Mono-" (number-to-string machine-font-size)))
-(set-default-font font-name-size)
+(set-frame-font font-name-size)
 (add-to-list 'default-frame-alist `(font . ,font-name-size))
 
 ;; Git gutter mode, show git changes in the fringe

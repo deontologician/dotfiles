@@ -8,7 +8,6 @@
 ;; My customizations
 (add-to-list 'load-path "~/.emacs.d/modules")
 ;; Color theme
-(add-to-list 'load-path "~/.emacs.d/themes/doom-theme")
 ;; Typescript IDE (can be removed once 2.0 branch is on melpa)
 (add-to-list 'load-path "~/.emacs.d/tide")
 (require 'machine-specific)
@@ -32,7 +31,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit ag projectile idris-mode flycheck rust-mode zoom-frm js2-mode tide nginx-mode lua-mode zencoding-mode yaml-mode xterm-color xref-js2 workgroups2 web-mode unicode-fonts typescript-mode twittering-mode toml-mode shackle racer purescript-mode markdown-mode magit-gh-pulls json-mode js2-refactor ivy-hydra hungry-delete haskell-mode groovy-mode git-gutter-fringe gist frame-cmds flycheck-rust fish-mode elpy elm-mode counsel coffee-mode ace-window ace-jump-buffer))))
+    (magit idris-mode flycheck rust-mode zoom-frm nginx-mode lua-mode yaml-mode xterm-color  workgroups2 unicode-fonts toml-mode shackle purescript-modee markdown-mode  json-mode hungry-delete haskell-mode git-gutter-fringe gist frame-cmds  fish-mode elpy elm-mode counsel ace-window ace-jump-buffer))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
